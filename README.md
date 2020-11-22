@@ -1,4 +1,4 @@
-# Parte Front del Proyecto Tienda de peliculas
+# Generador De Frases de Breaking Bad
 
 Generador de Frases de Breaking Bad de Tutorial https://www.udemy.com/course/react-de-principiante-a-experto-creando-mas-de-10-aplicaciones/.
 Este proyecto fue hecho con React conceptos aplicados :
