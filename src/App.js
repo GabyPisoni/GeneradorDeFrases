@@ -1,23 +1,44 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useState } from "react";
+import Button from "@material-ui/core/Button";
+import Frase from "../src/components/Frase";
+import Mensaje from "../src/components/Mensaje";
+
 
 function App() {
+  //State de frase
+  const [frase, setFrase] = useState({});
+  const [render, setRender] = useState(true);
+  const consultarAPI = async () => {
+    //Detiene la ejecucion del codigo hasta que api este completa y luego se lo pasa a api si esta listo.
+    const api = await fetch(
+      "https://breaking-bad-quotes.herokuapp.com/v1/quotes"
+    );
+    const texto = await api.json();
+    setFrase(texto[0]);
+    setRender(false);
+  };
+  
+  
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="cuerpo">
+      <div className="container">
+        <h1 style={{color:"#33FF61"}}>Frases de Breaking Bad</h1>
+        {render ? <Mensaje /> : <Frase frase={frase} />}
+      </div>
+
+      <Button
+        variant="contained"
+        color="primary"
+        style={{
+          position: "relative",
+          top: "70%",
+          left: "50%",
+          margin: "1%"
+        }}
+        onClick={consultarAPI}
+      >
+        Generar Frase
+      </Button> 
     </div>
   );
 }
